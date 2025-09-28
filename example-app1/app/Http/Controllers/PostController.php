@@ -38,7 +38,6 @@ class PostController extends Controller
 {
     // Optional: check ownership
     if (auth()->id() !== $post->user_id) {
-        abort(403, 'Unauthorized');
     }
 
     $incomingFields = $request->validate([
