@@ -7,6 +7,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 //the /plants route will call the index() method of PlantController 
 Route::get('/suppliers', [SupplierController::class, 'index']);
