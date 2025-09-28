@@ -14,6 +14,11 @@
     <button>LogOut</button>
 </form>
 
+@if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
 
     <div style="border: 3px solid black;">
         <h2>Create a New Post</h2>

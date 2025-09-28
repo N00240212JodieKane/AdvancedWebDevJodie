@@ -34,11 +34,13 @@ class PostController extends Controller
           return redirect('/');
     }
 
-     public function actuallyUpdatePost(Post $post, Request $request) {
-    if (auth()->user()->id !== $post['user_id']) {
-        return redirect('/');
-
+  public function actuallyUpdatePost(Post $post, Request $request)
+{
+    // Optional: check ownership
+    if (auth()->id() !== $post->user_id) {
+        abort(403, 'Unauthorized');
     }
+
     $incomingFields = $request->validate([
         'title' => 'required',
         'body' => 'required'
@@ -48,6 +50,8 @@ class PostController extends Controller
     $incomingFields['body'] = strip_tags($incomingFields['body']);
 
     $post->update($incomingFields);
-    return redirect('/');
-   }
+
+    // ✅ Redirect to main index with success message
+    return redirect('/')->with('message', 'Post updated successfully!');
+}
 }
