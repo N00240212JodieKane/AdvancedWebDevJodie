@@ -9,3 +9,5 @@ Route::get('/', function () {
 });
 //the /plants route will call the index() method of PlantController 
 Route::get('/plants', [SupplierController::class, 'index']);
+
+
