@@ -29,15 +29,15 @@ class MovieSeeder extends Seeder{
         'description' => 'Two imprisoned men bond over several years, finding solace and eventual redemption through acts of common decency.'
       ],
 
-          [
+     [
         'title' => 'The Lion King',
         'release_date' => '1994-06-24',
         'movie_url' => 'lionking',
         'description' => 'A young lion prince flees his kingdom after the murder of his father, only to learn the true meaning of responsibility and bravery'
-      ],
+    ],
 
 
-          [
+      [
         'title' => 'The Super Mario Bros Movie',
         'release_date' => '2023-04-05',
         'movie_url' => 'The_Super_Mario_Bros._Movie_poster',
@@ -45,12 +45,48 @@ class MovieSeeder extends Seeder{
       ],
 
 
-          [
+      [
         'title' => 'Spirted Away',
         'release_date' => '2003-03-28',
-        'movie_url' => 'Spirited_Away_Japanese_poster',
+        'movie_url' => 'Spirited_Away',
         'description' => 'During her familys move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, and where humans are changed into beasts.'
       ],
+
+        [
+        'title' => 'Everything Everywhere All at Once (2022)',
+        'release_date' => '2022-04-08',
+        'movie_url' => 'everything at once',
+        'description' => 'A Chinese-American woman is swept into a multiverse battle that challenges her perception of life, identity, and the choices she’s made.'
+      ],
+
+        [
+        'title' => 'La La Land',
+        'release_date' => '2017-01-13',
+        'movie_url' => 'lala',
+        'description' => 'An aspiring actress and a jazz musician fall in love while pursuing their dreams in Los Angeles, but ambition and reality threaten to pull them apart.'
+      ],
+
+        [
+        'title' => 'The Social Network (2010)',
+        'release_date' => '2010-10-01',
+        'movie_url' => 'social',
+        'description' => '"The Social Network" is a critically acclaimed film directed by David Fincher that chronicles the founding of Facebook and explores themes of ambition, betrayal, and the complexities of social relationships.'
+      ],
+
+
+        [
+        'title' => 'The Matrix',
+        'release_date' => '1999-03-31',
+        'movie_url' => 'matrix',
+        'description' => 'When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.every'
+        ],
+
+          [
+        'title' => 'The Burbs',
+        'release_date' => '1989-02-17',
+        'movie_url' => 'the burbs',
+        'description' => 'The film pokes fun at suburban environments and their sometimes eccentric dwellers, featuring a family man who suspects the "eccentric" new neighbors are hiding a dark secret.[2] '
+      ]
     ]);
     }
 }

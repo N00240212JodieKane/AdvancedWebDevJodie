@@ -1,11 +1,4 @@
-<style>
-    .poster-image {
-  width: 1100px;  /* Set the desired width */
-  height: 900px; /* Set the desired height */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-}
 
-</style>
 <div>
     <x-app-layout>
         <x-slot name='header'>
@@ -14,22 +7,21 @@
             </h2>
 
         </x-slot>
-
         <div class='py-12'>
             <div class='max-w-7x1 mx-auto sm:px-6 lg:px-8'>
                 <div class='bg-white overflow-hidden shadow-sm md:rounded-md'>
                     <div class='p-6 text-gray-900'>
                         <h3 class='font-semibold text-lg mb-4'>List of Movies</h3>
-                        <div class='grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-5 gap-10 poster-image'>
-                            @foreach($movies as $movie)
-                            <a href="{{ route('movies.show', $movie) }}">
-                                <x-movie-card
-                                :title='$movie->title'
-                                :movie_url='$movie->movie_url'
-                                :description='$movie->description'
-                                />
+                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+                          @foreach($movies as $movie)
+                           <a href="{{ route('movies.show', $movie) }}">
+                           <x-movie-card
+                            :title="$movie->title"
+                            :movie_url="$movie->movie_url"
+                            :description="$movie->description"
+                            />
                             </a>
-                            @endforeach
+                          @endforeach
                         </div>
                     </div>
                 </div>
