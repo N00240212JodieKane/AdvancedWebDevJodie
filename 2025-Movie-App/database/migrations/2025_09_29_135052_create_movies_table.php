@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->date('release_date');
             $table->string('movie_url');
+            $table->string('trailer_link');
             $table->text('description')->nullable();
             $table->timestamps();
         });

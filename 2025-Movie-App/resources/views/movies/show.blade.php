@@ -1,25 +1,20 @@
-<div>
-    <x-app-layout>
-        <x-slot name='header'>
-            <h2 class='font-semibold text-x1 text-gray-800 leading-tight'>
-                {{__('All Movies')}}
-            </h2>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ $movie->title }}
+        </h2>
+    </x-slot>
 
-        </x-slot>
-
-        <div class='py-12'>
-              <div class="flex justify-center items-center min-h-screen bg-gray-100 p-6">
-                <div class='bg-white overflow-hidden shadow-sm sm:rounded-lg'>
-                    <div class='p-6 text-gray-900'>
-                        <h3 class='font-semibold text-lg mb-4'>Movie Details</h3>
-                                <x-movie-details
-                                :title='$movie->title'
-                                :movie_url='$movie->movie_url'
-                                :description='$movie->description'
-                                />
-                    </div>
-                </div>
+    <div class="py-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <x-movie-card
+                    :title="$movie->title"
+                    :movie_url="$movie->movie_url"
+                    :trailer_link="$movie->trailer_link"
+                    :description="$movie->description"
+                />
             </div>
         </div>
-    </x-app-layout>
-</div>
+    </div>
+</x-app-layout>
