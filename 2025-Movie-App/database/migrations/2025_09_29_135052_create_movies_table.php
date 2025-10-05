@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations for Movies.
      */
     public function up(): void
     {
@@ -23,7 +23,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations for Movies.
      */
     public function down(): void
     {
