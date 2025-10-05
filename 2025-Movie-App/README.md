@@ -1,16 +1,25 @@
 
 ## First Week 29-09-25 --> 05-10-25
 
-First was creating my ERD Diagram
+First was creating my ERD Diagram on what my first CA1 will be about. Through Tough Decision i first went with a Nintendo games Diagram however though lots of many to
+many relationships not enough one to many relationships. I soon went with a another idea by doing Movies as my many to many relationship to them was the actors as theres many actors in many movies and awards for one to many as theres is one movie for many awards but only that specific award can get that movie.
+Next was setting up the actually project itself on a framework called Laravel. Laravel is a framework that is open-sourced and allows web development to be more enjoyable in making.
+It follows the MVC architecture which means Model, View and controller which help create different applications for your website to work. 
+So Firstly install Laravel and choose starter kit as none and then phpunit. Then your package will download with a load of files that you can edited kinda like a starter pack to understand laravle more. Soon you can create a folder for your project I named mine 2025-Movie-App and gave it the same load out. then you will ask it to download laravel breeze which is a helpful pack to create login, registration and passwords, etc. 
+Next was creating the blades for the index, edit, store and show, which I can edit for my Movie list. Then add a model called Movie which is the base and symbolises the database table I created for the movies and the Controlller called MovieController which controls each of the request comming in and what responses that is provided. 
+Either before or after the Model/Controller you must have a database created. I called mine 2025-movie-app (all lowercase) then create a table in the database folder called movies and all attributes for it (use migrate which migrates it to the server which where your databases are kept). Next is to add a seeder called MovieSeedeer which controls what information you put in the database (make sure its the correct info for each). Then push the database and seeder with php artisan to your database root (phpmyadmin make sure xampp is on). 
+Then you can run your server with php artisan serve and along with node.js (download) npm run dev which allows the user to edit the website while its still running live and updates if an edited is changed when its still running.
 
+As for optional codes, I added a Movie traler link in which the User can click on the video and can show the trailer in the show.blade page.
 
+codes: Model: php artisan make:model Movie
+      Controller: php artisan make:controller MovieController
+      database: php artisan migrate
+      seeder: php artisan db:seed
+      server: php artisan serev
+      node.js: npm run dev
 
-
-
-
-
-
-
+## Second Week 06-10-25 --> 12-10-25
 
 
 

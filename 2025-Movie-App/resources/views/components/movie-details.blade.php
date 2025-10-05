@@ -5,7 +5,6 @@
     <img src="{{ asset('images/movies/' . $movie_url . '.jpg') }}" 
          class="w-full h-auto rounded-lg mb-4 mx-auto" />
     <p class="text-gray-700 mb-6">{{ $description }}</p>
-
     @if ($youtube_url)
         <div class="aspect-w-16 aspect-h-9">
             <iframe 
