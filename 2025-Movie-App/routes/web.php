@@ -16,7 +16,7 @@ Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.e
 
 Route::middleware('auth')->group(function () {
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
-    Route::get('/movies/create', [MovieController::class, 'create'])->name('movie.create');
+   Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
 

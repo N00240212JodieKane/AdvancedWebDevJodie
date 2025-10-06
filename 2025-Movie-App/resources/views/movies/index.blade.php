@@ -18,6 +18,11 @@
                             />
                         </a>
                     @endforeach
+
+                 <!-- Should pop up if the craetion of the new movie is successful--> 
+                  <x-alert-success>
+                    {{ session('success')}}
+                  </x-alert-success>
                 </div>
             </div>
         </div>
