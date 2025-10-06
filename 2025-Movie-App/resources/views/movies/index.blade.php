@@ -15,7 +15,6 @@
                             <x-movie-card
                                 :title="$movie->title"
                                 :movie_url="$movie->movie_url"
-                                :description="$movie->description"
                             />
                         </a>
                     @endforeach
