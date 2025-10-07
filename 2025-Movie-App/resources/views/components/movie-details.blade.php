@@ -5,7 +5,7 @@
     
     <h2 class="text-2xl font-bold mb-4">{{ $title }}</h2>
 
-    <img src="{{ asset('images/movies/' . $movie_url . '.jpg') }}" 
+    <img src="{{ asset('images/movies/' . $movie_url) }}" 
          class="w-full h-auto rounded-lg mb-4 mx-auto" />
 
     <p class="text-gray-700 mb-6">{{ $description }}</p>

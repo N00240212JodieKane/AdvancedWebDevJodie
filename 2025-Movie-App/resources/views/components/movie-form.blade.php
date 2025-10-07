@@ -86,4 +86,10 @@
     {{ isset($movie) ? 'Update Movie' : 'Add Movie' }}
 </x-primary-button>
 
+
+
     </form>
+
+
+    
+    

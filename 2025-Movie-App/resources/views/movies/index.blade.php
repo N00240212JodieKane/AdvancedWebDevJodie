@@ -5,26 +5,34 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-4">List of Movies</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    @foreach ($movies as $movie)
-                        <a href="{{ route('movies.show', $movie) }}" class="block hover:shadow-lg rounded-lg transition">
-                            <x-movie-card
-                                :title="$movie->title"
-                                :movie_url="$movie->movie_url"
-                            />
-                        </a>
-                    @endforeach
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    @foreach ($movies as $movie)
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between h-full">
+            <a href="{{ route('movies.show', $movie) }}" class="block mb-4 hover:shadow-lg rounded-lg transition">
+                <x-movie-card
+                    :title="$movie->title"
+                    :movie_url="$movie->movie_url"
+                />
+            </a>
+            <div class="flex space-x-2 mt-auto">
+                <a href="{{ route('movies.edit', $movie) }}"
+                   class="flex-1 text-center text-gray-600 bg-green-300 hover:bg-green-700 font-bold py-2 rounded transition">
+                    Edit
+                </a>
 
-                 <!-- Should pop up if the craetion of the new movie is successful--> 
-                  <x-alert-success>
-                    {{ session('success')}}
-                  </x-alert-success>
-                </div>
+                <form action="{{ route('movies.destroy', $movie) }}" method="POST"
+                      onsubmit="return confirm('Are you sure?');"
+                      class="flex-1">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                            class="w-full bg-red-500 hover:bg-red-700 text-gray-600 font-bold py-2 rounded transition">
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
-    </div>
+    @endforeach
+</div>
+
 </x-app-layout>

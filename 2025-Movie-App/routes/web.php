@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
-    Route::delete('/movies', [MovieController::class, 'destroy'])->name('movies.destroy');
+    Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 });
 
 require __DIR__.'/auth.php';
