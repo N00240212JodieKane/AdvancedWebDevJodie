@@ -6,6 +6,11 @@
     </x-slot>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+ <form action="{{ route('movies.index') }}" method="GET">
+    <input type="text" name="search" placeholder="Search for a movie">
+    <button type="submit">Search</button>
+</form>
+        <br><br><br>  {{-- To not mess up the index and cause overlapping and a break away and space --}}
     @foreach ($movies as $movie)
         <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between h-full">
             <a href="{{ route('movies.show', $movie) }}" class="block mb-4 hover:shadow-lg rounded-lg transition">

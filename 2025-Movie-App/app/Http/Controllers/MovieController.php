@@ -11,11 +11,23 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-   public function index()
+
+
+public function index(Request $request)
 {
-    $movies = Movie::all(); //Fetch All Movies
-    return view('movies.index', compact('movies')); //Return the view for all Movies
+    $search = $request->input('search');
+
+    $movies = Movie::query();
+
+    if ($search) {
+        $movies->where('title', 'like', '%' . $search . '%');
+    }
+
+    $movies = $movies->get();
+
+    return view('movies.index', compact('movies'));
 }
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,9 +73,15 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-   public function show($id)
+public function show($id)
 {
-    $movie = Movie::find($id); // Or however you're getting the movie
+    $movie = Movie::find($id); // or use findOrFail($id) for automatic 404
+
+    if (!$movie) {
+        // Optional: redirect or show custom error if movie not found
+        return redirect()->route('movies.index')->with('error', 'Movie not found');
+    }
+
     return view('movies.show', compact('movie'));
 }
 
