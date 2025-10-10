@@ -15,17 +15,17 @@ class MovieController extends Controller
 
 public function index(Request $request)
 {
-    $search = $request->input('search');
+    $search = $request->input('search'); //Search a Movie by its title to request to search
 
-    $movies = Movie::query();
+    $movies = Movie::query(); //Fetch Movie from query
 
     if ($search) {
-        $movies->where('title', 'like', '%' . $search . '%');
-    }
+        $movies->where('title','like', '%' . $search . '%');
+    } //The title will pop up depending on what movie you searched up
 
-    $movies = $movies->get();
+    $movies = $movies->get(); //Recieves the Movie
 
-    return view('movies.index', compact('movies'));
+    return view ('movies.index', compact('movies')); //Returns when complete to index
 }
 
 
