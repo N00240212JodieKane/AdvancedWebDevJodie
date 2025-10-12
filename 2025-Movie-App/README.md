@@ -36,6 +36,8 @@ For the optional code, I created a search bar so i created an input in my index 
 
 Also between edited any other blades that needed fixing too.
 
+Also found a tailwind code that allows me to create different colors i put it in the tailwind.config
+
 codes: php artisan make:component MovieForm
        php artisan make:component AlertSuccess
 

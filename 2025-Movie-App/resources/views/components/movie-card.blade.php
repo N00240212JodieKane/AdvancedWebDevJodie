@@ -3,7 +3,7 @@
     @props(['title', 'movie_url', 'release_date'])
 
     <!-- Design of the Movie Card displayed on the screen on the web-->
- <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6 text-center">
+ <div class="max-w-2xl mx-auto bg-blue-300 rounded-lg shadow-md p-6 text-center">
 
     <h2 class="text-xl font-bold mb-4">{{ $title }}</h2> 
     <p class="text-gray-700 mb-6">{{ $release_date }}</p>

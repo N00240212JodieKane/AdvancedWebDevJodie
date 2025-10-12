@@ -1,16 +1,19 @@
 
 <x-app-layout>
     <x-slot name="header">
-     <h2 class="font-bold text-xl text-gray-800 leading-tight">
+     <h2 class="font-bold text-xl text-black-800 leading-tight">
         {{ __('All Movies') }} {{-- Title of Page --}}
      </h2>
     </x-slot>
 
     <div class="grid grid-cols-4 md:grid-cols-2 gap:6">
-        <form action="{{ route('movies.index') }}" method="GET">
-            <input type="text" name="search" placeholder="Please Search For A Movie">
+       <div>
+   <div class="flex items-center max-w-md mx-auto p-3">
+       <input type="text" name="search" placeholder="Please Search For A Movie">
             <button type="submit">Search !</button>
-        </form>
+   </div>
+</div>
+
         <br><br> {{-- To not mess up the index and cause overlapping and a break away and space --}}
 
         @foreach ($movies as $movie) {{-- Loop through the movies and recieves them --}}
