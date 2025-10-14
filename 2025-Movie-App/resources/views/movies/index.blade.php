@@ -6,10 +6,7 @@
      </h2>
     </x-slot>
 
-    <div class="grid grid-cols-4 md:grid-cols-2 gap:4">
-       <div >
-       </div>{{-- Somehow this is div with nothing is keeping the website together for 2 cols together --}}
-        <br><br> {{-- To not mess up the index and cause overlapping and a break away and space --}}
+        <div class="grid grid-cols-4 md:grid-cols-2 gap:4">
         @foreach ($movies as $movie) {{-- Loop through the movies and recieves them --}}
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
              <a href="{{ route('movies.show', $movie) }}" class="block mb-3 hover:shadow-md rounded-lg transition">
@@ -19,21 +16,23 @@
               :release_date="$movie->release_date" 
               /> {{-- Recieves the movies from the database --}}
              </a>
-        <div class="flex space-x-2 mt-auto">
-            <a href="{{ route('movies.edit', $movie) }}" class="flex-1 text-center bg-green-500 hover:bg-green-700 text-gray-600 font-semibold py-2 rounded transition">
-                EDIT 
-            </a> {{-- Route to edit --}}
-            
-            <form action="{{ route('movies.destroy', $movie) }}" method="POST"
-            onsubmit="return confirm('Are You Sure You want to delete this Movie?')" class="flex-2">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="flex-1 text-center bg-red-500 hover:bg-red-700 text-gray-600 font-semibold py-2 rounded transition">
-                DELETE
-            </button> {{-- Route to Delete --}}
-        </form>
-        </div>
+    <div class="mt-4 flex justify-center space-x-2">
+    <a href="{{ route('movies.edit', $movie) }}" class="text-center bg-green-500 hover:bg-green-700 text-gray-600 font-semibold py-2 px-4 rounded transition">
+        EDIT 
+    </a>
+    
+    <form action="{{ route('movies.destroy', $movie) }}" method="POST"
+          onsubmit="return confirm('Are You Sure You want to delete this Movie?')" class="flex-2">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="text-center bg-red-500 hover:bg-red-700 text-gray-600 font-semibold py-2 px-4 rounded transition">
+            DELETE
+        </button>
+    </form>
+</div> <!-- Edit and Delete buttons for each movie -->
         </div>
         @endforeach
-    </div>
+    <script>
+        // Optional: If you want to apply the class dynamically or for future use
+    </script>
 </x-app-layout>
