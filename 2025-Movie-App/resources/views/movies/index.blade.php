@@ -8,8 +8,8 @@
 
         <div class="grid grid-cols-4 md:grid-cols-2 gap:4">
         @foreach ($movies as $movie) {{-- Loop through the movies and recieves them --}}
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-             <a href="{{ route('movies.show', $movie) }}" class="block mb-3 hover:shadow-md rounded-lg transition">
+        <div class="bg-purple-200 p-6">
+             <a href="{{ route('movies.show', $movie) }}" class="block mb-3">
               <x-movie-card 
               :title="$movie->title" 
               :movie_url="$movie->movie_url"
