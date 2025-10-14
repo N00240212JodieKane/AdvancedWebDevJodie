@@ -1,3 +1,14 @@
+## NOTE
+For the Github Messages I gforgot to write a message during the first week.
+So heres what each one means:
+web.php is just editing the web page for the routes of my movie list
+.env trying to get the database to work successfully
+Movie.php making the model and editing fixtures to it
+composer.json fixing the json file
+MovieCard.php Adding stuff to the movie card
+show.blade.php wanting to separate the card and details of movies to fixing the show alongside it.
+MovieController fixing anything or adding into the main Controller of the project.
+README.md adding the first summary of what happened that week.
 
 ## First Week 29-09-25 --> 05-10-25
 
