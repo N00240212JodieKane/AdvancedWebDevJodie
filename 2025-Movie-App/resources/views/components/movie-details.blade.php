@@ -1,6 +1,6 @@
 @props(['title', 'movie_url', 'description', 'trailer_link' => null, 'release_date'])
 
-<div class="max-w-2xl mx-auto p-6 bg-blue-300 rounded-lg shadow-md text-center">
+<div class="max-w-2xl mx-auto p-6 bg-purple-300 rounded-lg shadow-md text-center">
     <p class="text-gray-700 mb-6">{{ $release_date }}</p>
     <h2 class="text-2xl font-bold mb-4">{{ $title }}</h2>
     @if ($trailer_link)

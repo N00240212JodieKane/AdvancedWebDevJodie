@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-blue-400 border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-purple-200 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -21,6 +21,12 @@
                      <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
                         {{ __('Create New Movie') }}
                     </x-nav-link>
+                    <div class="flex items-center max-w-md mx-auto p-8">
+    <form action="" method="GET">
+       <input type="text" name="search" placeholder="Please Search For A Movie">
+            <button type="submit" class="my-2 py-2 bg-blue-200 rounded transition rounded-lg p-6 text-center">Search !</button>
+        </form>
+   </div>
                 </div>
             </div>
 
