@@ -11,6 +11,7 @@
         @method($method)
         @endif
 
+        {{-- Title --}}
         <div class="mb-4">
             <label for="title" class="block text-sm text-gray-700">Title</label>
             <input 
@@ -29,7 +30,7 @@
         <div class="mb-4">
             <label for="movie_url" class="block text-sm font-medium text-gray-700">Image</label>
             <input 
-            type="file"
+            type="file" {{-- Adding a file from desktop or any personal folders the user owns --}}
             name="movie_url"
             id="movie_url"
             {{ isset($movie) ? : 'required'}}
@@ -39,6 +40,7 @@
             @enderror
         </div>
 
+         {{-- Description --}}
           <div class="mb-4">
             <label for="description" class="block text-sm text-gray-700">Description</label>
             <input 
@@ -53,6 +55,7 @@
             @enderror
         </div>
 
+         {{-- Trailer Link (Youtube ID) --}}
             <div class="mb-4">
             <label for="trailer_link" class="block text-sm text-gray-700">Youtube Id</label>
             <input 
@@ -67,6 +70,7 @@
             @enderror
         </div>
 
+         {{-- Release Date --}}
                <div class="mb-4">
             <label for="release_date" class="block text-sm text-gray-700">Release Date</label>
             <input 

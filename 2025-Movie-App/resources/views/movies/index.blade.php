@@ -6,7 +6,7 @@
      </h2>
     </x-slot>
 
-        <div class="grid grid-cols-4 md:grid-cols-2 gap:4">
+        <div class="grid grid-cols-4 md:grid-cols-2 gap:4 bg-white">
         @foreach ($movies as $movie) {{-- Loop through the movies and recieves them --}}
         <div class="bg-purple-200 p-6">
              <a href="{{ route('movies.show', $movie) }}" class="block mb-3">

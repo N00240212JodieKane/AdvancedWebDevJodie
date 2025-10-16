@@ -18,4 +18,4 @@
     <p class="text-gray-700 mb-6">{{ $description }}</p>
       <img src="{{ asset('images/movies/' . $movie_url) }}" 
          class="w-full md:w-38 h-auto rounded-lg mx-auto md:mx-0" />
-</div>
+</div> {{-- This is only shown in the show.blade as it is viewing the movies full details on what the move is about --}}
