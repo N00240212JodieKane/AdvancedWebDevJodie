@@ -1,5 +1,5 @@
 ## NOTE
-For the Github Messages I gforgot to write a message during the first week.
+For the Github Messages I forgot to write a message during the first week.
 So heres what each one means:
 web.php is just editing the web page for the routes of my movie list
 .env trying to get the database to work successfully
@@ -53,6 +53,8 @@ codes: php artisan make:component MovieForm
        php artisan make:component AlertSuccess
 
 ## Third Week 13-10-25 --> 19-10-25
+
+For the Third week of the assignment, there wasnt much more to do as everything was prepped. Though I had an issue with the search bar since the method was gone got GET unexpectedally, I was able to fix the issue. Another was centering the buttons for edit and delete underneath each movie but i was able to centre it in the end. I also customised the dashboard by adding an image to spruce it up more. Overall it was just fixing bugs and adding any remainder comments to each of the blade in this project explaing my understanding of Laravel.
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
