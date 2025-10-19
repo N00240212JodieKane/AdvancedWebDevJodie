@@ -1,14 +1,14 @@
 ## NOTE
 For the Github Messages I forgot to write a message during the first week.
 So heres what each one means:
-web.php is just editing the web page for the routes of my movie list
-.env trying to get the database to work successfully
-Movie.php making the model and editing fixtures to it
-composer.json fixing the json file
-MovieCard.php Adding stuff to the movie card
-show.blade.php wanting to separate the card and details of movies to fixing the show alongside it.
-MovieController fixing anything or adding into the main Controller of the project.
-README.md adding the first summary of what happened that week.
+web.php is just editing the web page for the routes of my movie list /
+.env trying to get the database to work successfully /
+Movie.php making the model and editing fixtures to it /
+composer.json fixing the json file /
+MovieCard.php Adding stuff to the movie card / 
+show.blade.php wanting to separate the card and details of movies to fixing the show alongside it. /
+MovieController fixing anything or adding into the main Controller of the project. /
+README.md adding the first summary of what happened that week. /
 
 ## First Week 29-09-25 --> 05-10-25
 
@@ -55,6 +55,9 @@ codes: php artisan make:component MovieForm
 ## Third Week 13-10-25 --> 19-10-25
 
 For the Third week of the assignment, there wasnt much more to do as everything was prepped. Though I had an issue with the search bar since the method was gone got GET unexpectedally, I was able to fix the issue. Another was centering the buttons for edit and delete underneath each movie but i was able to centre it in the end. I also customised the dashboard by adding an image to spruce it up more. Overall it was just fixing bugs and adding any remainder comments to each of the blade in this project explaing my understanding of Laravel.
+
+## Final Week
+For the final week was just fixing up any remainder codes that need fixing whch was the updat funcion for file and adding any remainder comments left. Next was making my video and explaining my project. Going through the main points of the code and how the website functions too. Then I handed everything on teams after which completed my first CA1 of Advanced Web Dev
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
