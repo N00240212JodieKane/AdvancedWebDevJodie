@@ -98,34 +98,39 @@ public function show($id)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Movie $movie)
-    {
-            // Validate input
-    $request->validate([
-        'title' => 'required',
-        'release_date' => 'required',
-        'movie_url' => 'required|image|mimes:jpg,png,jpeg,gif',
-        'description' => 'required|max:800',
-        'trailer_link' => 'required'
-    ]);
+  public function update(Request $request, Movie $movie)
+{
+ // In update()
+$request->validate([
+    'title' => 'required',
+    'release_date' => 'required',
+    'movie_url' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+    'description' => 'required|max:800',
+    'trailer_link' => 'required'
+]);
 
-   // Handle file upload
+
+    // ✅ Keep old image unless a new one is uploaded
+    $imageName = $movie->movie_url;
+
     if ($request->hasFile('movie_url')) {
         $imageName = time().'.'.$request->movie_url->extension();
         $request->movie_url->move(public_path('images/movies'), $imageName);
-    } 
+    }
 
-    // Create the movie record
+    // ✅ Update record
     $movie->update([
         'title' => $request->title,
         'release_date' => $request->release_date,
-        'movie_url' => $imageName, // Just the filename, not full path
+        'movie_url' => $imageName,
         'description' => $request->description,
         'trailer_link' => $request->trailer_link
     ]);
 
-    return to_route('movies.index')->with('success', 'Movie Updated successfully');
-    }
+    return to_route('movies.show', $movie)
+        ->with('success', 'Movie updated successfully');
+}
+
 
     /**
      * Remove the specified resource from storage.
