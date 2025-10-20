@@ -110,7 +110,7 @@ $request->validate([
 ]);
 
 
-    // ✅ Keep old image unless a new one is uploaded
+    // Keep old image unless a new one is uploaded
     $imageName = $movie->movie_url;
 
     if ($request->hasFile('movie_url')) {
@@ -118,7 +118,7 @@ $request->validate([
         $request->movie_url->move(public_path('images/movies'), $imageName);
     }
 
-    // ✅ Update record
+    // Update record
     $movie->update([
         'title' => $request->title,
         'release_date' => $request->release_date,
