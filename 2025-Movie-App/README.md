@@ -24,12 +24,16 @@ View is also what the user sees on the website using the html given to them and 
 
 As for optional codes, I added a Movie traler link in which the User can click on the video and can show the trailer in the show.blade page.
 
+Code found for Youtube Id: [Stack](https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url)
+
 codes: Model: php artisan make:model Movie
       Controller: php artisan make:controller MovieController
       database: php artisan migrate
       seeder: php artisan db:seed
       server: php artisan serev
       node.js: npm run dev
+
+      
 
 ## Second Week 06-10-25 --> 12-10-25
 
