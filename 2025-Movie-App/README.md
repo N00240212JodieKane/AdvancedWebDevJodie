@@ -10,6 +10,8 @@ show.blade.php wanting to separate the card and details of movies to fixing the 
 MovieController fixing anything or adding into the main Controller of the project. /
 README.md adding the first summary of what happened that week. /
 
+Any erors that popped up: Helped From Stackoverflow or chatgpt 
+
 ## First Week 29-09-25 --> 05-10-25
 
 First was creating my ERD Diagram on what my first CA1 will be about. Through Tough Decision I first went with a Nintendo games Diagram however though lots of many to
@@ -48,6 +50,9 @@ Next was the edit and delete. First make sure your route in web.php is in for ed
 For the Delete now is quite simple, all you need to do is go into MovieController eloquent being delete and when you delete the movie it shoould just stay in the index since the delete button was there and with a success being Movie was deleted. Also in the index blade for delete there should be a prompt for are you sure you want to delete this movie on the top when I click the delete button.
 
 For the optional code, I created a search bar so i created an input in my index blade for serach. Then went into MovieController and changed a bit for the eloquent index which is you type in the movies title in the search it will fetch the movie with the title name and wll recieve it.
+
+Code Found to Help search bar:[Stack](https://stackoverflow.com/questions/42972095/simple-search-in-laravel)
+
 
 Also between edited any other blades that needed fixing too.
 
