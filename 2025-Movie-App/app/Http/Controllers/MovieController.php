@@ -34,8 +34,12 @@ public function index(Request $request)
      */
     public function create()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('movies.index')->with('error', 'Access Denied');
+        }
         return view('movies.create');
     }
+
 
     /**
      * Store a newly created resource in storage.

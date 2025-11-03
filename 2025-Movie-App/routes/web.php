@@ -12,7 +12,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); //Route to dashboard first thing to view when logged in or registered
 
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); //Route to edit your profile (Not done that yet no need for CA1 but keep so the we page works for a user)
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');//Route to edit your profile (Not done that yet no need for CA1 but keep so the we page works for a user)
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+}); 
 
 Route::middleware('auth')->group(function () {
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index'); //Route to go to the main page

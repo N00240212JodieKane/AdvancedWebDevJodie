@@ -18,9 +18,14 @@
                       <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
                         {{ __('View all Movies') }}
                     </x-nav-link>
+
+                       <!-- The create link will only be available for the admin user -->
+                    @if(auth()->user()->role === 'admin')
                      <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
                         {{ __('Create New Movie') }}
                     </x-nav-link>
+                    @endif
+
                     <div class="flex items-center max-w-md mx-auto p-8">
     <form action="" method="GET">
        <input type="text" name="search" placeholder="Please Search For A Movie">

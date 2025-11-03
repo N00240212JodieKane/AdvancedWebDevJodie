@@ -6,6 +6,14 @@
      </h2>
     </x-slot>
 
+    <x-alert-success>
+        {{ session('success') }}
+    </x-alert-success>
+    
+        <x-alert-error>
+        {{ session('error') }}
+    </x-alert-error>
+
         <div class="grid grid-cols-4 md:grid-cols-2 gap:4 bg-white">
         @foreach ($movies as $movie) {{-- Loop through the movies and recieves them --}}
         <div class="bg-purple-200 p-6">
@@ -16,6 +24,7 @@
               :release_date="$movie->release_date" 
               /> {{-- Recieves the movies from the database --}}
              </a>
+              @if(auth()->user()->role === 'admin') {{-- This allows the edit and delete to be accessed only by the admin not the user --}}
     <div class="mt-4 flex justify-center space-x-2">
     <a href="{{ route('movies.edit', $movie) }}" class="text-center bg-green-500 hover:bg-green-700 text-gray-600 font-semibold py-2 px-4 rounded transition">
         EDIT 
@@ -30,6 +39,7 @@
         </button>
     </form>
 </div> <!-- Edit and Delete buttons for each movie -->
+@endif
         </div>
         @endforeach
     <script>
