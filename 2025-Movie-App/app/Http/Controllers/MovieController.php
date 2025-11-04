@@ -86,6 +86,7 @@ public function show($id)
         return redirect()->route('movies.index')->with('error', 'Movie not found');
     }
 
+    $movie->load('awards.user'); //user Id for awards 
     return view('movies.show', compact('movie'));
 }
 

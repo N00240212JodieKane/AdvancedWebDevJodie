@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +19,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); 
 
+//Route to Awards
+Route::resource('awards', AwardController::class); // Handles routes for the awards
+Route::post('movies/{movie}/awards', [AwardController::class, 'store'])->name('awards.store'); //overwrite store route (different), Movie parameter
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index'); //Route to go to the main page
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create'); //Route to go to the create form
-    Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show'); //Route to go to the movie full details page
+    Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show'); //Route to go to the movie full details page
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store'); //Route to allow movies to be stored in the database when created/updated
 
     Route::get('movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit'); //Route when edited a movie it will be stored in the database

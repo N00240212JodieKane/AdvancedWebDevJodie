@@ -2,20 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Award;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-//The Movie Model Class
 class Movie extends Model
 {
     use HasFactory;
 
-    
-    protected $fillable = [ //add this for the mass assignmant as its assigning to multiple attributes as one individual
+    // Allow mass assignment for these attributes
+    protected $fillable = [
         'title',
         'description',
         'release_date',
         'movie_url',
-        'trailer_link'
+        'trailer_link',
     ];
+
+    // Relationship: One Movie has many Awards
+    public function awards()
+    {
+        return $this->hasMany(Award::class); //The relationship between the two models/databases
+    }
 }
+
