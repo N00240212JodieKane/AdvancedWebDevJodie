@@ -18,7 +18,7 @@
             type="text"
             name="title"
             id="title"
-            value="{{old('title', $movie->title)}}"
+            value="{{ old('title', $movie->title ?? '') }}"
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"/>
             @error('title')
@@ -47,7 +47,7 @@
             type="text"
             name="description"
             id="description"
-            value="{{old('description', $movie->description)}}"
+            value="{{ old('description', $movie->description ?? '') }}"
             required
             class="mt-1 block w-full border-gray-1000 rounded-md shadow-sm"/>
             @error('description')
@@ -62,7 +62,7 @@
             type="text"
             name="trailer_link"
             id="trailer_link"
-            value="{{old('trailer_link', $movie->trailer_link)}}"
+            value="{{ old('trailer_link', $movie->trailer_link ?? '') }}"
             required
             class="mt-1 block w-full border-gray-1000 rounded-md shadow-sm"/>
             @error('trailer_link')
@@ -77,7 +77,7 @@
             type="date"
             name="release_date"
             id="release_date"
-            value="{{old('release_date', $movie->release_date)}}"
+          value="{{ old('release_date', $movie->release_date ?? '') }}"
             required
             class="mt-1 block w-full border-gray-1000 rounded-md shadow-sm"/>
             @error('release_date')

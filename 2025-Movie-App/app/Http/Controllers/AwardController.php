@@ -28,22 +28,26 @@ class AwardController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Movie $movie)
+    public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'comment' => 'required',
-            'enum' => 'required',
-            'movie_id' => 'nullable|exists:movies,id'
+            'award_names' => 'required',
+            'movie_id' => 'required|exists:movies,id'
         ]);
 
+        $movie = Movie::find($validated['movie_id']);
 
+        if (!$movie) {
+            return redirect()->back()->withErrors(['album_id' => 'Selected movie doesnt exist']);
+        }
         //Give your opinion on the award
          $movie->awards()->create([
-            'enum' => $request->input('enum'),
-            'comment' => $request->input('comment'),
-            'user_id' => auth()->id(),
-            
-        ]);
+    'award_names' => $validated['award_names'],
+    'comment' => $validated['comment'],
+    'user_id' => auth()->id(),
+]);
+
 
         return redirect()->route('movies.show', $movie)->with('success','Award Vote Completed'); //Redirect if its success 
 
@@ -62,7 +66,12 @@ class AwardController extends Controller
      */
     public function edit(Award $award)
     {
-        //
+        if (auth()->user()->id !== $award->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->route('movies.index')->with('error', 'Access denied');
+        }
+
+        //Passing the movie and award to the view, they are both needed
+           return view('awards.edit', compact('award'));
     }
 
     /**
@@ -70,14 +79,25 @@ class AwardController extends Controller
      */
     public function update(Request $request, Award $award)
     {
-        //
+        //ensure that is authorised to update content 
+        //Validate code
+        //only enum (award name) and comment can be altered
+        $award->update($request->only(['award_names', 'comment']));
+
+        //Make sure it makes sense to the application
+        return redirect()->route('movies.show', $award->movie_id)
+                         ->with('success', 'Award Vote Updated successfully');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Award $award)
-    {
-        //
+   {
+     $award->delete();
+     
+     return to_route('movies.index')->with('success', 'Award Vote Deleted Success');
+    
     }
 }

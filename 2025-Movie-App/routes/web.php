@@ -21,7 +21,10 @@ Route::middleware('auth')->group(function () {
 
 //Route to Awards
 Route::resource('awards', AwardController::class); // Handles routes for the awards
-Route::post('movies/{movie}/awards', [AwardController::class, 'store'])->name('awards.store'); //overwrite store route (different), Movie parameter
+Route::post('movies/{movie}/awards', [AwardController::class, 'store'])->name('movies.awards.store'); 
+Route::get('movies/awards/{award}/edit', [AwardController::class, 'edit'])->name('movies.awards.edit');
+Route::put('movies/{movie}/awards', [AwardController::class, 'update'])->name('movies.awards.update');
+Route::delete('movies/{movie}/awards', [AwardController::class, 'delete'])->name('movies.awards.destroy');
 
 
 

@@ -26,8 +26,24 @@
         @foreach ($movie->awards as $award)
             <li class="bg-purple-200 p-5 rounded-lg">
                 <p class="font-semibold">{{ $award->user->name }}</p>
-                <p>Awards: {{ $award->enum }}</p>
+                <p>Awards: {{ $award->award_names }}</p>
                 <p>{{ $award->comment }}</p>
+                              @if(auth()->user()->role === 'admin') {{-- This allows the edit and delete to be accessed only by the admin not the user --}}
+    <div class="mt-4 flex justify-center space-x-2">
+    <a href="{{ route('awards.edit', $award) }}" class="text-center bg-green-500 hover:bg-green-700 text-gray-600 font-semibold py-2 px-4 rounded transition">
+        EDIT 
+    </a>
+    
+    <form action="{{ route('awards.destroy', $award) }}" method="POST"
+          onsubmit="return confirm('Are You Sure You want to delete this Award Votes?')" class="flex-2">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="text-center bg-red-500 hover:bg-red-700 text-gray-600 font-semibold py-2 px-4 rounded transition">
+            DELETE
+        </button>
+    </form>
+</div> <!-- Edit and Delete buttons for each movie -->
+@endif
             </li>
         @endforeach
     </ul>
@@ -39,22 +55,14 @@
            <h4 class="font-semibold text-md mt-8">Vote for Award</h4>
            <form action="{{ route('awards.store', $movie) }}" method="POST" class="mt-4"> {{-- Stores the vote --}}
             @csrf
-            <div class="mb-4">
-                <label for="enum" class="black font-medium text-sm text-gray-600">Award</label>
-                <select name="enum" id="enum" class="mt-4 block w-full" required>
-                    <option value="1">Oscar</option>
-                    <option value="2">Golden Globe</option>
-                    <option value="3">BAFTA</option>
-                    <option value="4">Emmy</option>
-                    <option value="5">Cannes</option>
-                </select>
+              <div class="mb-4">
+                <label for="award_names" class="black font-medium text-sm text-gray-600">Award Names</label>
+                <textarea name="award_names" id="award_names" rows="3" class="mt-1 block w-full" placeholder="Your Opinion on Your decision"></textarea>
             </div>
-
             <div class="mb-4">
                 <label for="comment" class="black font-medium text-sm text-gray-600">Comment</label>
                 <textarea name="comment" id="comment" rows="3" class="mt-1 block w-full" placeholder="Your Opinion on Your decision"></textarea>
             </div>
-
             <button type="submit" class="bg-purple-100 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
                 Submit Your Vote!!
             </button>

@@ -12,7 +12,7 @@ class Award extends Model
     use HasFactory;
 
     
-    protected $fillable = ['enum', 'comment', 'user_id', 'movie_id'];
+    protected $fillable = ['award_names', 'comment', 'user_id', 'movie_id'];
 
    public function movie()
 {

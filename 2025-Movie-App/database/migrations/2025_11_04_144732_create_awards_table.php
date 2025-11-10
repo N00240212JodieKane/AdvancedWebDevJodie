@@ -15,9 +15,10 @@ return new class extends Migration
     $table->id();
     $table->foreignId('movie_id')->constrained()->onDelete('cascade');
     $table->foreignId('user_id')->constrained()->onDelete('cascade');
-    $table->enum('enum', ['Oscars','Golder Globe','BAFTA','Emmys','Crannes']); //Awards names
+    $table->text('award_names')->nullable(); //Awards names
     $table->text('comment')->nullable();
     $table->timestamps(); // <-- adds created_at and updated_at
+    
 });
     }
 
