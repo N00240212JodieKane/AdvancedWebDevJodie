@@ -28,30 +28,39 @@ class AwardController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'comment' => 'required',
-            'award_names' => 'required',
-            'movie_id' => 'required|exists:movies,id'
-        ]);
+   public function store(Request $request)
+{
+    // Validate input
+    $validated = $request->validate([
+        'award_names' => 'required|string|max:255',
+        'comment' => 'required|string|max:500',
+        'movie_id' => 'required|exists:movies,id',
+    ]);
 
-        $movie = Movie::find($validated['movie_id']);
-
-        if (!$movie) {
-            return redirect()->back()->withErrors(['album_id' => 'Selected movie doesnt exist']);
-        }
-        //Give your opinion on the award
-         $movie->awards()->create([
-    'award_names' => $validated['award_names'],
-    'comment' => $validated['comment'],
-    'user_id' => auth()->id(),
-]);
-
-
-        return redirect()->route('movies.show', $movie)->with('success','Award Vote Completed'); //Redirect if its success 
-
+    // Ensure user is logged in
+    if (!auth()->check()) {
+        return redirect()->back()->with('error', 'You must be logged in to submit an award.');
     }
+
+    // Find the movie
+    $movie = Movie::find($validated['movie_id']);
+
+    if (!$movie) {
+        return redirect()->back()->withErrors(['movie_id' => 'Selected movie does not exist']);
+    }
+
+    // Create the award linked to the movie and user
+    $movie->awards()->create([
+        'award_names' => $validated['award_names'],
+        'comment' => $validated['comment'],
+        'user_id' => auth()->id(),
+    ]);
+
+    // Redirect back to the movie page with success message
+    return redirect()->route('movies.show', $movie->id)
+                     ->with('success', 'Award submitted successfully!');
+}
+
 
     /**
      * Display the specified resource.

@@ -53,8 +53,9 @@
                     {{--Add Award Votes --}}
                       @if(auth()->user()->role === 'user') {{-- Only User Can Access --}}
            <h4 class="font-semibold text-md mt-8">Vote for Award</h4>
-           <form action="{{ route('awards.store', $movie) }}" method="POST" class="mt-4"> {{-- Stores the vote --}}
-            @csrf
+           <form action="{{ route('awards.store') }}" method="POST">
+    @csrf
+    <input type="hidden" name="movie_id" value="{{ $movie->id }}">
               <div class="mb-4">
                 <label for="award_names" class="black font-medium text-sm text-gray-600">Award Names</label>
                 <textarea name="award_names" id="award_names" rows="3" class="mt-1 block w-full" placeholder="Your Opinion on Your decision"></textarea>
