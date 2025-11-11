@@ -24,5 +24,12 @@ class Movie extends Model
     {
         return $this->hasMany(Award::class); //The relationship between the two models/databases
     }
+
+
+    //Use both sides can have many of each other, connected through the pivot class
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class);
+    }
 }
 

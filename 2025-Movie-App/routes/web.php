@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\MovieController;
@@ -26,6 +27,20 @@ Route::get('movies/awards/{award}/edit', [AwardController::class, 'edit'])->name
 Route::put('movies/{movie}/awards', [AwardController::class, 'update'])->name('movies.awards.update');
 Route::delete('movies/{movie}/awards', [AwardController::class, 'delete'])->name('movies.awards.destroy');
 
+//Route to Actors
+Route::resource('actors', ActorController::class)->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/actors', [ActorController::class, 'index'])->name('actors.index'); 
+    Route::get('/actors/create', [ActorController::class, 'create'])->name('actors.create'); 
+    Route::get('/actors/{actor}', [ActorController::class, 'show'])->name('actors.show'); 
+    Route::post('/actors', [ActorController::class, 'store'])->name('actors.store'); 
+
+    Route::get('actors/{actor}/edit', [ActorController::class, 'edit'])->name('actors.edit'); 
+    Route::put('/actors/{actor}', [ActorController::class, 'update'])->name('actors.update'); 
+    Route::delete('/actors/{actor}', [ActorController::class, 'destroy'])->name('actors.destroy'); 
+
+    Route::get('/actors/search', [ActorController::class, 'search']); 
+});
 
 
 Route::middleware('auth')->group(function () {

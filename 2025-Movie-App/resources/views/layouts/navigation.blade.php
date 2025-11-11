@@ -18,6 +18,9 @@
                       <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
                         {{ __('View all Movies') }}
                     </x-nav-link>
+                        <x-nav-link :href="route('actors.index')" :active="request()->routeIs('actors.index')">
+                        {{ __('View all Actors') }}
+                    </x-nav-link>
 
                        <!-- The create link will only be available for the admin user -->
                     @if(auth()->user()->role === 'admin')
@@ -26,12 +29,26 @@
                     </x-nav-link>
                     @endif
 
-                    <div class="flex items-center max-w-md mx-auto p-8">
-    <form action="" method="GET">
-       <input type="text" name="search" placeholder="Please Search For A Movie">
-            <button type="submit" class="my-2 py-2 bg-blue-200 rounded transition rounded-lg p-6 text-center">Search !</button>
-        </form>
-   </div>
+                        @if(auth()->user()->role === 'admin')
+                     <x-nav-link :href="route('actors.create')" :active="request()->routeIs('actors.create')">
+                        {{ __('Create New Actor') }}
+                    </x-nav-link>
+                    @endif
+
+  <form action="" method="GET" class="flex items-center space-x-2">
+    <input 
+      type="text" 
+      name="search" 
+      placeholder="Please Search For A Movie"
+      class="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+    <button 
+      type="submit" 
+      class="bg-blue-200 hover:bg-blue-300 text-gray-800 font-medium px-4 py-1 rounded-md transition"
+    >
+      Search !
+    </button>
+  </form>
                 </div>
             </div>
 
