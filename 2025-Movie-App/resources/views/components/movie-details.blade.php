@@ -1,8 +1,18 @@
-@props(['title', 'movie_url', 'description', 'trailer_link' => null, 'release_date'])
+@props(['title', 'movie_url', 'description', 'trailer_link' => null, 'release_date', 'movie', 'first_name'])
+
+<?php
+    use App\Models\Actor;
+    $actors = Actor::orderBy('first_name')->get();
+?>
 
 <div class="max-w-2xl mx-auto p-6 bg-purple-300 rounded-lg shadow-md text-center">
     <p class="text-gray-700 mb-6">{{ $release_date }}</p>
     <h2 class="text-2xl font-bold mb-4">{{ $title }}</h2>
+    <ul class="text-gray-800">
+        @foreach($movie->actors as $actor) 
+        <ul><a href="{{ route("actors.show", $actor) }}">{{ $actor->first_name }}</a></ul>
+        @endforeach
+    </ul>
     @if ($trailer_link)
         <div class="aspect-w-16 aspect-h-9">
             <iframe 

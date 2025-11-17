@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <x-movie-details
+                    :movie="$movie"
                     :title="$movie->title" {{-- This recieves any movies thats in the database and puts it on the web page in their ID order --}}
                     :release_date="$movie->release_date" {{-- This recieves any movies thats in the database and puts it on the web page in their ID order --}}
                     :movie_url="$movie->movie_url" {{-- This recieves any movies thats in the database and puts it on the web page in their ID order --}}
