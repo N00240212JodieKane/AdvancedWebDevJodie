@@ -10,7 +10,7 @@
     <h2 class="text-2xl font-bold mb-4">{{ $title }}</h2>
     <ul class="text-gray-800">
         @foreach($movie->actors as $actor) 
-        <ul><a href="{{ route("actors.show", $actor) }}">{{ $actor->first_name }}</a></ul>
+        <ul class="underline"><a href="{{ route("actors.show", $actor) }}">{{ $actor->first_name }}</a></ul>
         @endforeach
     </ul>
     @if ($trailer_link)

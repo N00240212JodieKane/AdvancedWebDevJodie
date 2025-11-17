@@ -12,7 +12,7 @@
     <p class="text-gray-700 mb-6">{{ $story }}</p>  
     <ul class="text-gray-800">
          @foreach($actor->movies as $movie) 
-        <ul><a href="{{ route("movies.show", $movie) }}">{{ $movie->title }}</a></ul>
+        <ul class="underline"><a href="{{ route("movies.show", $movie) }}">{{ $movie->title }}</a></ul>
         @endforeach
     </ul>
       <img src="{{ asset('images/actor/' . $image) }}" 
