@@ -36,7 +36,9 @@ public function index(Request $request)
     {
         if (auth()->user()->role !== 'admin') {
             return redirect()->route('movies.index')->with('error', 'Access Denied');
-        }
+        }      
+
+        
         return view('movies.create');
     }
 

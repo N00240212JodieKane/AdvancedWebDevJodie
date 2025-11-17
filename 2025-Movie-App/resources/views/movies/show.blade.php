@@ -52,7 +52,7 @@
 
                     {{--Add Award Votes --}}
                       @if(auth()->user()->role === 'user') {{-- Only User Can Access --}}
-           <h4 class="font-semibold text-md mt-8">Vote for Award</h4>
+           <h4 class="font-semibold text-md mt-8">Give us Your Opinion</h4>
            <form action="{{ route('awards.store') }}" method="POST">
     @csrf
     <input type="hidden" name="movie_id" value="{{ $movie->id }}">

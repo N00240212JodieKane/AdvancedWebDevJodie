@@ -9,7 +9,7 @@
     <p class="text-gray-700 mb-6">{{ $release_date }}</p>
     <div class="flex justify-center mb-4">
        <img src="{{ asset( 'images/movies/' . $movie_url ) }}" {{-- Movie image link to recieve and show the image --}}
-         class="w-full md:w-48 h-auto rounded-lg mx-auto md:mx-0" />
+         class="w-full md:w-48 h-auto rounded-lg mx-auto md:mx-0" style="height: 300px; width:250px;" />
     </div>    
 </div>
 </div>  

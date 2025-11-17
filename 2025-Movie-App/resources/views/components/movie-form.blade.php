@@ -84,6 +84,7 @@
             <p class='text-sm text-red-600'>{{$message}}</p>
             @enderror
         </div>
+        
 
         <!-- After creating pushed this to create the movie on the index page -->
        <x-primary-button>

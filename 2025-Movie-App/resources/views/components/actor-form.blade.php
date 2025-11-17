@@ -1,7 +1,14 @@
 
     <!-- create view will display the form to add the new movie -->
 
-    @props(['action', 'method', 'movie'])
+    @props(['action', 'method', 'actor', 'movie', 'actorMovies'=> [] ])
+
+    <?php
+ 
+use App\Models\Movie;
+$movies = Movie::orderBy('title')->get();
+?>
+  
 
 
     <!--Creates the form and allows the user to recieve the data for the form to pop up on the web -->
@@ -13,7 +20,7 @@
 
         {{-- First Name --}}
         <div class="mb-4">
-            <label for="first_name" class="block text-sm text-gray-700">first_name</label>
+            <label for="first_name" class="block text-sm text-gray-700">First Name</label>
             <input 
             type="text"
             name="first_name"
@@ -27,7 +34,7 @@
         </div>
 
                 <div class="mb-4">
-            <label for="last_name" class="block text-sm text-gray-700">last_name</label>
+            <label for="last_name" class="block text-sm text-gray-700">Last Name</label>
             <input 
             type="text"
             name="last_name"
@@ -56,7 +63,7 @@
 
          {{-- age --}}
                   <div class="mb-4">
-            <label for="age" class="block text-sm text-gray-700">age</label>
+            <label for="age" class="block text-sm text-gray-700">Age</label>
             <input 
             type="text"
             name="age"
@@ -73,7 +80,7 @@
 
          {{-- Bio --}}
             <div class="mb-4">
-            <label for="story" class="block text-sm text-gray-700">story</label>
+            <label for="story" class="block text-sm text-gray-700">Story</label>
             <input 
             type="text"
             name="story"
@@ -85,6 +92,22 @@
             <p class='text-sm text-red-600'>{{$message}}</p>
             @enderror
         </div>
+
+         <div>
+        <label class="block font-semibold mb-2">Select Movies</label>
+
+        @foreach($movies as $movie)
+            <label class="inline-flex items-center mr-4 mb-2">
+                <input 
+                    type="checkbox" 
+                    name="movies[]" 
+                    value="{{ $movie->id }}"
+                    {{ in_array($movie->id, $actorMovies) ? 'checked' : '' }}
+                >
+                {{ $movie->title }}
+            </label>
+        @endforeach
+    </div>
 
         <!-- After creating pushed this to create the Actor on the index page -->
        <x-primary-button>

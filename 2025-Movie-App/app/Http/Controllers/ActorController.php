@@ -3,138 +3,115 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actor;
-use App\Http\Controllers\Controller;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class ActorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-           $search = $request->input('search'); //Search a Movie by its title to request to search
+        $search = $request->input('search');
 
-    $actors = Actor::query(); //Fetch Movie from query
+        $actors = Actor::with('movies')
+            ->when($search, function($query, $search) {
+                $query->where('first_name', 'like', '%' . $search . '%');
+            })
+            ->get();
 
-    if ($search) {
-        $actors->where('first_name','like', '%' . $search . '%');
-    } //The title will pop up depending on what actor you searched up
-
-    $actors = $actors->get(); //Recieves the actor
-
-    return view ('actors.index', compact('actors')); //Returns when complete to index
+        return view('actors.index', compact('actors'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-          {
         if (auth()->user()->role !== 'admin') {
-            return redirect()->route('actors.index')->with('error', 'Access Denied');
+            return redirect()->route('movies.index')->with('error', 'Access Denied');
         }
-        return view('actors.create');
-    }
+
+        $movies = Movie::all();
+        return view('actors.create', compact('movies'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-          // Validate input
-    $request->validate([
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'image' => 'required',
-        'age' => 'required',
-        'story' => 'required|max:800'
-    ]);
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'age' => 'required',
+            'story' => 'required|max:800',
+            'movies' => 'array',
+        ]);
 
-   // Handle file upload
-    if ($request->hasFile('image')) {
-        $imageName1 = time().'.'.$request->image->extension();
-        $request->image->move(public_path('images/actor'), $imageName1);
-    } 
+        // Upload image if exists
+        if ($request->hasFile('image')) {
+            $validated['image'] = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/actor/'), $validated['image']);
+        }
 
-    // Create the movie record
-    Actor::create([
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'image' => $imageName1, // Just the filename, not full path
-        'age' => $request->age,
-        'story' => $request->story
-        
-    ]);
+        // Create actor ONCE
+        $actor = Actor::create($validated);
 
-    return to_route('actors.index')->with('success', 'Actor created successfully');
+        // Attach movies
+        if ($request->has('movies')) {
+            $actor->movies()->attach($request->movies);
+        }
+
+        return to_route('actors.index')->with('success', 'Actor created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Actor $actor)
     {
+            // Load related movies for this actor
+    $actor->load('movies');
         return view('actors.show', compact('actor'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Actor $actor)
-    {
-         {
-        return view('actors.edit')->with('actor', $actor);
-    }
+public function edit($id)
+{
+    $actor = Actor::findOrFail($id);
+    $movies = Movie::all();
+    $actorMovies = $actor->movies->pluck('id')->toArray();
 
-    }
+    return view('actors.edit', compact('actor', 'movies', 'actorMovies'));
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+
     public function update(Request $request, Actor $actor)
     {
-        // In update()
-    $request->validate([
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'image' => 'required',
-        'age' => 'required',
-        'story' => 'required|max:800'
-    ]);
+        $validated = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
+            'age' => 'required',
+            'story' => 'required|max:800',
+            'movies' => 'array',
+        ]);
 
-    // Keep old image unless a new one is uploaded
-    $imageName1 = $actor->image;
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $validated['image'] = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/actor/'), $validated['image']);
+        }
 
-  // Handle file upload
-    if ($request->hasFile('image')) {
-        $imageName1 = time().'.'.$request->image->extension();
-        $request->image->move(public_path('images/actor'), $imageName1);
-    } 
+        // Update actor without creating a new one
+        $actor->update($validated);
 
-    // Update record
-    $actor->update([
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'image' => $imageName1, // Just the filename, not full path
-        'age' => $request->age,
-        'story' => $request->story
-    ]);
+        // Sync movie relationships
+        if ($request->has('movies')) {
+            $actor->movies()->sync($request->movies);
+        } else {
+            $actor->movies()->detach();
+        }
 
-    return to_route('actors.show', $actor)
-        ->with('success', 'actor updated successfully');
+        return to_route('actors.show', $actor)->with('success', 'Actor updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Actor $actor)
     {
-         $actor->delete();
-     
-     return to_route('actors.index')->with('success', 'Actor Deleted Success');
-    
+        $actor->movies()->detach();
+        $actor->delete();
+
+        return to_route('actors.index')->with('success', 'Actor Deleted Successfully');
     }
 }
