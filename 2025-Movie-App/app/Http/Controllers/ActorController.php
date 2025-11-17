@@ -39,6 +39,7 @@ class ActorController extends Controller
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
             'age' => 'required',
             'story' => 'required|max:800',
+            'interview_link' => 'required',
             'movies' => 'array',
         ]);
 
@@ -85,6 +86,7 @@ public function edit($id)
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif',
             'age' => 'required',
             'story' => 'required|max:800',
+            'interview_link' => 'required',
             'movies' => 'array',
         ]);
 

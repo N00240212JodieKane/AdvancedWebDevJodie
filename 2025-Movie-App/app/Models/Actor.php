@@ -10,7 +10,7 @@ class Actor extends Model
     
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'image', 'age', 'story'];
+    protected $fillable = ['first_name', 'last_name', 'image', 'age', 'story', 'interview_link'];
 
     // Actor can be in many movies
     public function movies()

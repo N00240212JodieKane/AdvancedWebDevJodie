@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image')->nullable(); //image of the actor
             $table->string('age');
             $table->text('story'); //Who they are as a person
+            $table->string('interview_link');
             $table->timestamps();
         });
     }

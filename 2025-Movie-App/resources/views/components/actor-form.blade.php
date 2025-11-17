@@ -12,11 +12,12 @@ $movies = Movie::orderBy('title')->get();
 
 
     <!--Creates the form and allows the user to recieve the data for the form to pop up on the web -->
-    <form action="{{$action}}" method="POST" enctype="multipart/form-data">
+     <form action="{{$action}}" method="POST" enctype="multipart/form-data">
         @csrf 
         @if($method === 'PUT' || $method === 'PATCH')
         @method($method)
         @endif
+
 
         {{-- First Name --}}
         <div class="mb-4">
@@ -92,6 +93,22 @@ $movies = Movie::orderBy('title')->get();
             <p class='text-sm text-red-600'>{{$message}}</p>
             @enderror
         </div>
+
+        
+         {{-- Trailer Link (Youtube ID) --}}
+            <div class="mb-4">
+            <label for="interview_link" class="block text-sm text-gray-700">Interview Id</label>
+            <input 
+            type="text"
+            name="interview_link"
+            id="interview_link"
+            value="{{ old('interview_link', $actor->interview_link ?? '') }}"
+            required
+            class="mt-1 block w-full border-gray-1000 rounded-md shadow-sm"/>
+            @error('interview_link')
+            <p class='text-sm text-red-600'>{{$message}}</p>
+            @enderror
+        </div>div>
 
          <div>
         <label class="block font-semibold mb-2">Select Movies</label>

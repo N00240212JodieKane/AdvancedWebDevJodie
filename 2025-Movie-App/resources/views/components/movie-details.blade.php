@@ -1,4 +1,4 @@
-@props(['title', 'movie_url', 'description', 'trailer_link' => null, 'release_date', 'movie', 'first_name'])
+@props(['title', 'movie_url', 'description', 'trailer_link' => null, 'release_date', 'movie', 'first_name, last_name'])
 
 <?php
     use App\Models\Actor;
@@ -10,7 +10,13 @@
     <h2 class="text-2xl font-bold mb-4">{{ $title }}</h2>
     <ul class="text-gray-800">
         @foreach($movie->actors as $actor) 
-        <ul class="underline"><a href="{{ route("actors.show", $actor) }}">{{ $actor->first_name }}</a></ul>
+        <ul class="underline">
+    <li>
+        <a href="{{ route('actors.show', $actor) }}">
+            {{ $actor->first_name }} {{ $actor->last_name }}
+        </a>
+    </li>
+</ul>
         @endforeach
     </ul>
     @if ($trailer_link)

@@ -15,6 +15,7 @@
     :age="$actor->age"
     :story="$actor->story"
     :movies="$actor->movies"
+    :interview_link="$actor->interview_link"
 />
 
             </div>
