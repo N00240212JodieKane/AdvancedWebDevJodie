@@ -108,7 +108,7 @@ $movies = Movie::orderBy('title')->get();
             @error('interview_link')
             <p class='text-sm text-red-600'>{{$message}}</p>
             @enderror
-        </div>div>
+        </div>
 
          <div>
         <label class="block font-semibold mb-2">Select Movies</label>

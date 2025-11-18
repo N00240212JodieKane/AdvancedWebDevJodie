@@ -19,8 +19,9 @@
             </div>
 
             {{-- Award Votes --}}
-            <h4 class="font-semibold text-md mt-8">Award Vote</h4>
-        @if ($movie->awards->isEmpty())
+            <h4 class="font-semibold text-md mt-8">Voice your Opinion</h4>
+            <p class="text-md mt-8">Which Award would this movie deserve</p>
+        @if ($movie->awards->isEmpty()) {{-- No votes have been placed in yet --}}
     <p class="text-gray-600">No Votes yet</p>
 @else
     <ul class="mt-4 space-y-4">
