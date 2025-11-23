@@ -1,74 +1,20 @@
-## NOTE
-For the Github Messages I forgot to write a message during the first week.
-So heres what each one means:
-web.php is just editing the web page for the routes of my movie list /
-.env trying to get the database to work successfully /
-Movie.php making the model and editing fixtures to it /
-composer.json fixing the json file /
-MovieCard.php Adding stuff to the movie card / 
-show.blade.php wanting to separate the card and details of movies to fixing the show alongside it. /
-MovieController fixing anything or adding into the main Controller of the project. /
-README.md adding the first summary of what happened that week. /
+Ca2 Continous Project
 
-Any erors that popped up: Helped From Stackoverflow or chatgpt 
+Week 1 And 2 (ERD and Admin/Users, One-To-Many)
 
-## First Week 29-09-25 --> 05-10-25
+<p>Now that CA1 is done for Ca2 its a continous assessment/project for Larvel (a framework for web application that programmers are able to design and moderate easily and fix issues simply)</p>
 
-First was creating my ERD Diagram on what my first CA1 will be about. Through Tough Decision I first went with a Nintendo games Diagram however though lots of many to
-many relationships not enough one to many relationships. I soon went with a another idea by doing Movies as my many to many relationship to them was the actors as theres many actors in many movies and awards for one to many as theres is one movie for many awards but only that specific award can get that movie.
-Next was setting up the actually project itself on a framework called Laravel. Laravel is a framework that is open-sourced and allows web development to be more enjoyable in making and helps make the website more organised.
-It follows the MVC architecture which means Model, View and controller which help create different applications for your website to work. 
-So Firstly install Laravel and choose starter kit as none and then phpunit. Then your package will download with a load of files that you can edited kinda like a starter pack to understand laravel more. Soon you can create a folder for your project I named mine 2025-Movie-App and gave it the same load out. then you will ask it to download laravel breeze which is a helpful pack to create login, registration and passwords, etc. 
-Next was creating the blades for the index, edit, store and show, which I can edit for my Movie list. Then add a model called Movie which is the base and symbolises the database table I created for the movies and the Controlller called MovieController which controls each of the request coming in and what responses that is provided, edit each of the eloquents (public functions). 
-Either before or after the Model/Controller you must have a database created. I called mine 2025-movie-app (all lowercase) then create a table in the database folder called movies and all attributes for it (use migrate which migrates it to the server which where your databases are kept). Next is to add a seeder called MovieSeedeer which controls what information you put in the database (make sure its the correct info for each). Then push the database and seeder with php artisan to your database root (phpmyadmin make sure xampp is on). 
-Then you can run your server with php artisan serve and along with node.js (download) npm run dev which allows the user to edit the website while its still running live and updates if an edited is changed when its still running.
-View is also what the user sees on the website using the html given to them and what they created.
+<p>Ca2 includes an admin and user profile, One-To-Many Relationships (Movies and Awards) and Many-To-Many Relationships (Movies and Actors)</p>
 
-As for optional codes, I added a Movie traler link in which the User can click on the video and can show the trailer in the show.blade page.
+<p>The first thing to do is to check if your ERD is correct and it makes sense, so for a one-to-many relationship being for movies and awards such as many movies can have many awards but only one designated award can be for one movie, while Many-To-Many realtionships like Movies and Actors Many Actors can be in many movies and many movies can have the same actors or many other actors. Make sure to check with your lectrer that it makes sense. Also have a pivot table for your Movie ID and Actor ID as your going to connecting those tables together to create a link</p>
 
-Code found for Youtube Id: [Stack](https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url)
+<p>Before starting the other tables in your laravel web application make sure to have an admin and user. This means that the admin can access the create/edit forms and the delete button while the user cant access them but only look at the movies with a click. This is called User roles (Later on, I will explain how to let users make their own submits on the website). First things first, make a new migration (which a refresher, is use to migrate your database/ create a database onto phpmyadmin) called add_role_to_users_table. However you are NOT creating a new tablke you are adding on the role to the already made table 'users', this why we have migrations. Use --table=users this tells laravel to alter the users table. Now open the migration and add the up() and down() functions then run your migration to phpmyadmin. Then add protected fillables to your Model (Which is the heart of MVC and part of helping the databse) Users to set the roles (Make a seeder then so its able to insert the information). Now you wanna add a conditional statement to your buttons. This means if the admin is presented they can see the edit/delete buttons and create form and interact with them, NOT THE USER. So use an IF statement are surround each link with an admin role (This creates a Tab). Now add a registration  to your register view to let the user indicate if they are a admin or a user. To do this create a dropdown in your register blade and add the roles user/admin to the option values. Next Alter the registered user controller (Controller Recieves and responses to any data gone through to the website and is the Brain on MVC). This will validate each of the role and save the role that is put in. So if your logged in as admin you should see the create book tab as the admin. While as User you can not access this. Make sure in your index() function in MovieController to stop user from accessing this only admins can access the forms. I also created a alert message that will pop up if the user tries to access the form</p>
 
-codes: Model: php artisan make:model Movie
-      Controller: php artisan make:controller MovieController
-      database: php artisan migrate
-      seeder: php artisan db:seed
-      server: php artisan serev
-      node.js: npm run dev
+<p>A One-To-Many relationship for movies is awards I chose. A Movie has many Awards but an Award belongs to One Movie, and a Award belongs to one User. The foreign key remember is to do with the many side which is the awards id. Consider the parent the Movie and the child the Award. First make a MCR for Award (php artisan make:model Award -mcr) then follow what you did first in CA1 by starting with editing the migration but add a foreignId for movie id and user id with a ON DELETE CASCADE. Then run that migration to have it on phpmyadmin. Next go to your Movie Model and add at the bottom a public function awards() that a movie($this) hasMany(Award::class), this runs the connection awards, its plural as a movie has many awards. Next go into the Award Model and add a movie() and user() function singular as a Award belongs to one Movie and One user, These are super powerful little functions, doing alot behind the scenes. Next add the route in web.php as use statements. Alter the MovieController as when i get a movie i would want to get the movie awards. So alter the show(). Alter the Movie Show Blade then to display the awards and to add a award name and opinon.</p>
 
-      
-
-## Second Week 06-10-25 --> 12-10-25
-
-For the second week of my Laravel CA1 project, I created a CRUD which is used to create, edit and delete a movie of choice. 
-Firstly was making the create crud which will allow the user to create a new movie that will be put on to the website and into the database that will be stored. How that happens is to first make sure that your web.php has a route to movies.create.php that it will work and be available to visit the url. Next was to edit the MovieController eloquent public function create request so when the user creates a new movie the controller can handle the request and return the response to allow the new movie to be created. Next was fixing up the navbar is the layouts folder which is putting another route to the create crud on the navbar. 
-Next is to make the crud itself , first though create a MovieForm which will be like the create view form for the movies. Use the PHP artisan make to make the component MovieForm. Next create what prompts you will add for each of the attributes in the database (make sure its the correct one for each), example title and its input will be text and the movie_url (image) which is a file uploader. Now go into the create blade and edit it in which the code will show what the form will load into. Now you need to create the store function which is when once the data you create in the form is validated it will insert the movie created from the form on the index page. Make sure to have an error message for each like for description it must be required and a max words of 500. 
-For the image which is the movie_url when your putting in a image do not take it from the public folder in the laravel application. This is because the laravel is only for the programmer not the user, if the user is using the crud and wants to put an image in the crud they must use their own personal folder on their own device like their desktop or downloads folder etc. 
-Now if you want, I put in a success message in which if the new movie is created, it will appear on the index page. First make a component called AlertSuccess. Next create the success design and then put a x-alert-success which success in it in the index blade.
-Now test it, first you will get an error for something called mass assignment. Mass assignment is when its the process of assigning multiple attributes to a model in a whole single step rather than individually. 
-So in my Movie.php model I put a protected fillable for all my attributes since I am assigning to them all. Now the crud should work now.
-Next was the edit and delete. First make sure your route in web.php is in for edit and delete/destroy (any works). Next create another route in the index page for edit and delete and update, this will assign each of the movies on your index and button for both edit and delete under each movie. Now first the edit, The edit crud is the exact same for the create so I kept the MovieForm for both. In the edit blade make sure to link back to the MovieForm and route it instead to the movie update and the method instead should be PUT. The update() eloquent is the same for the store but instead of creating I am updating and returns the lsit with updated successfully.
-For the Delete now is quite simple, all you need to do is go into MovieController eloquent being delete and when you delete the movie it shoould just stay in the index since the delete button was there and with a success being Movie was deleted. Also in the index blade for delete there should be a prompt for are you sure you want to delete this movie on the top when I click the delete button.
-
-For the optional code, I created a search bar so i created an input in my index blade for serach. Then went into MovieController and changed a bit for the eloquent index which is you type in the movies title in the search it will fetch the movie with the title name and wll recieve it.
-
-Code Found to Help search bar:[Stack](https://stackoverflow.com/questions/42972095/simple-search-in-laravel)
-
-
-Also between edited any other blades that needed fixing too.
-
-Also found a tailwind code that allows me to create different colors i put it in the tailwind.config
-
-codes: php artisan make:component MovieForm
-       php artisan make:component AlertSuccess
-
-## Third Week 13-10-25 --> 19-10-25
-
-For the Third week of the assignment, there wasnt much more to do as everything was prepped. Though I had an issue with the search bar since the method was gone got GET unexpectedally, I was able to fix the issue. Another was centering the buttons for edit and delete underneath each movie but i was able to centre it in the end. I also customised the dashboard by adding an image to spruce it up more. Overall it was just fixing bugs and adding any remainder comments to each of the blade in this project explaing my understanding of Laravel.
-
-## Final Week
-For the final week was just fixing up any remainder codes that need fixing whch was the updat funcion for file and adding any remainder comments left. Next was making my video and explaining my project. Going through the main points of the code and how the website functions too. Then I handed everything on teams after which completed my first CA1 of Advanced Web Dev
+<p>Now add an edit/delete function as a secondary resource for one-to-many. This is only for admin users as they can edit the users award opinions. First create the buttons in the show blade and put them at the bottom of the award display and wrap the admin role if statement around the the buttons as only the admin can access these buttons. Then create the routes in your web.php to take to the form. Alter the AwardController and add to edit() when admin clicks on the edit button it takes them to the form, the update() updates the previously store award in the database and the delete() to delete that award. Then create a view (component) for the form (Almost like the create form). Then write the edit code in the edit blade as this will show what the blade will look like. Then create the actual form, its exactly llike the previous create form but with only two attributes the award_name and comment. Then test it to make sure it is working perfectly. Then i added in an alert for the award when its updated to let them know it was a success. Then to delete() do the exact same for when you want to delete a Movie except with an Award, remember to consider the foreign keys and will it do anything wrong (make sure to have it right). I also added an alert to this when the movie has been deleted successfully.</p>
 
 
 
 
-
+Week 3 and 4 (Many-To-Many)

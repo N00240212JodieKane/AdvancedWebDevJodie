@@ -19,7 +19,7 @@
             </div>
 
             {{-- Award Votes --}}
-            <h4 class="font-semibold text-md mt-8">Voice your Opinion</h4>
+            <h4 class="font-semibold text-md mt-8">Which Award do you believe this Movie should have won</h4>
             <p class="text-md mt-8">Which Award would this movie deserve</p>
         @if ($movie->awards->isEmpty()) {{-- No votes have been placed in yet --}}
     <p class="text-gray-600">No Votes yet</p>
@@ -54,7 +54,7 @@
 
                     {{--Add Award Votes --}}
                       @if(auth()->user()->role === 'user') {{-- Only User Can Access --}}
-           <h4 class="font-semibold text-md mt-8">Give us Your Opinion</h4>
+           <h4 class="font-semibold text-md mt-8">Give Your Opinions</h4>
            <form action="{{ route('awards.store') }}" method="POST">
     @csrf
     <input type="hidden" name="movie_id" value="{{ $movie->id }}">
@@ -67,7 +67,7 @@
                 <textarea name="comment" id="comment" rows="3" class="mt-1 block w-full" placeholder="Your Opinion on Your decision"></textarea>
             </div>
             <button type="submit" class="bg-purple-100 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded">
-                Submit Your Vote!!
+                Submit Your Opinion!!
             </button>
            </form>
         </div>
