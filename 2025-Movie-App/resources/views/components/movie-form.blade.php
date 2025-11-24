@@ -101,7 +101,7 @@ $actors = Actor::orderBy('first_name')->get();
                     value="{{ $actor->id }}"
                    {{ isset($movie) && $movie->actors->contains($actor->id) ? 'checked' : '' }}
                 >
-                {{ $actor->first_name }}{{ $actor->last_name }}
+                {{ $actor->first_name }}  {{ $actor->last_name }}
             </label>
         @endforeach
     </div>
