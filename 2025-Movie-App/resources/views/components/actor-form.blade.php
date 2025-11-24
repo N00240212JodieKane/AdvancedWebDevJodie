@@ -119,7 +119,7 @@ $movies = Movie::orderBy('title')->get();
                     type="checkbox" 
                     name="movies[]" 
                     value="{{ $movie->id }}"
-                    {{ in_array($movie->id, $actorMovies) ? 'checked' : '' }}
+                   {{ isset($actor) && $actor->movies->contains($movie->id) ? 'checked' : '' }}
                 >
                 {{ $movie->title }}
             </label>
@@ -128,7 +128,7 @@ $movies = Movie::orderBy('title')->get();
 
         <!-- After creating pushed this to create the Actor on the index page -->
        <x-primary-button>
-    {{ isset($movie) ? 'Update Actor' : 'Add Actor' }}
+    {{ isset($actor) ? 'Update Actor' : 'Add Actor' }}
 </x-primary-button>
 
 

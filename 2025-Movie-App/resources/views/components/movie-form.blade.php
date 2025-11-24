@@ -3,6 +3,10 @@
 
     @props(['action', 'method', 'movie'])
 
+<?php
+    use App\Models\Actor;
+$actors = Actor::orderBy('first_name')->get();
+?>
 
     <!--Creates the form and allows the user to recieve the data for the form to pop up on the web -->
     <form action="{{$action}}" method="POST" enctype="multipart/form-data">
@@ -86,9 +90,26 @@
         </div>
         
 
+                <div>
+        <label class="block font-semibold mb-2">Select Movies</label>
+
+        @foreach($actors as $actor)
+            <label class="inline-flex items-center mr-4 mb-2">
+                <input 
+                    type="checkbox" 
+                    name="actors[]" 
+                    value="{{ $actor->id }}"
+                   {{ isset($movie) && $movie->actors->contains($actor->id) ? 'checked' : '' }}
+                >
+                {{ $actor->first_name }}{{ $actor->last_name }}
+            </label>
+        @endforeach
+    </div>
+
+
         <!-- After creating pushed this to create the movie on the index page -->
        <x-primary-button>
-    {{ isset($movie) ? 'Update Movie' : 'Add Movie' }}
+   {{ isset($movie) ? 'Update Movie' : 'Add Movie' }}
 </x-primary-button>
 
 

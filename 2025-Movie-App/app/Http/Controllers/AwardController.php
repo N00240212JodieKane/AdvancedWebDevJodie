@@ -104,7 +104,7 @@ class AwardController extends Controller
      */
     public function destroy(Award $award)
    {
-     $award->delete();
+     $award->delete(); //Deletes that specific award
      
      return to_route('movies.index')->with('success', 'Award Vote Deleted Success');
     

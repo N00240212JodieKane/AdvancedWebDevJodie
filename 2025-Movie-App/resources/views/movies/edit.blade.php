@@ -13,7 +13,8 @@
                   <x-movie-form 
                   :action="route('movies.update', $movie)" 
                   method="PUT" 
-                  :movie="$movie" />
+                  :movie="$movie"
+                  />
             </div>
         </div>
     </div>

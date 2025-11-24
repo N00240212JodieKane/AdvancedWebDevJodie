@@ -96,9 +96,12 @@ public function show($id)
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Movie $movie)
+    public function edit($id)
     {
           {
+             $movie = Movie::findOrFail($id);
+    $actors = Actor::all();
+    $movieActors = $movie->actors->pluck('id')->toArray();
         return view('movies.edit')->with('movie', $movie);
     }
     }

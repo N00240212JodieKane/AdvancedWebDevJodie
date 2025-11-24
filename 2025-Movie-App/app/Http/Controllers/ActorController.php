@@ -14,7 +14,7 @@ class ActorController extends Controller
 
         $actors = Actor::with('movies')
             ->when($search, function($query, $search) {
-                $query->where('first_name', 'like', '%' . $search . '%');
+                $query->where('first_name', 'like', '%' . $search . '%'); //Be able to search a actor 
             })
             ->get();
 
@@ -111,7 +111,7 @@ public function edit($id)
 
     public function destroy(Actor $actor)
     {
-        $actor->movies()->detach();
+        $actor->movies()->detach(); //Pivot Tbale_> Detaches the actor from the movie when they are deleted
         $actor->delete();
 
         return to_route('actors.index')->with('success', 'Actor Deleted Successfully');
