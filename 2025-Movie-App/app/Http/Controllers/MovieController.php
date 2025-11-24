@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Models\Actor;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
-
+use App\Models\Actor;
 class MovieController extends Controller
 {
     /**
@@ -50,7 +49,7 @@ public function index(Request $request)
  public function store(Request $request)
 {
     // Validate input
-    $request->validate([
+   $validated = $request->validate([
         'title' => 'required',
         'release_date' => 'required',
         'movie_url' => 'required|image|mimes:jpg,png,jpeg,gif',
@@ -63,6 +62,14 @@ public function index(Request $request)
         $imageName = time().'.'.$request->movie_url->extension();
         $request->movie_url->move(public_path('images/movies'), $imageName);
     } 
+
+     // Create movie ONCE
+        $movie = Movie::create($validated);
+
+        // Attach movies
+        if ($request->has('actors')) {
+            $movie->actors()->attach($request->actors);
+        }
 
     // Create the movie record
     Movie::create([
@@ -102,7 +109,7 @@ public function show($id)
              $movie = Movie::findOrFail($id);
     $actors = Actor::all();
     $movieActors = $movie->actors->pluck('id')->toArray();
-        return view('movies.edit')->with('movie', $movie);
+        return view('movies.edit', compact('movie', 'actors', 'movieActors'));
     }
     }
 
@@ -112,7 +119,7 @@ public function show($id)
   public function update(Request $request, Movie $movie)
 {
  // In update()
-$request->validate([
+$validated = $request->validate([
     'title' => 'required',
     'release_date' => 'required',
     'movie_url' => 'nullable|image|mimes:jpg,png,jpeg,gif',
@@ -128,6 +135,16 @@ $request->validate([
         $imageName = time().'.'.$request->movie_url->extension();
         $request->movie_url->move(public_path('images/movies'), $imageName);
     }
+
+    // Update actor without creating a new one
+        $movie->update($validated);
+
+        // Sync movie relationships
+        if ($request->has('actors')) {
+            $movie->actors()->sync($request->actors);
+        } else {
+            $movie->actors()->detach();
+        }
 
     // Update record
     $movie->update([
