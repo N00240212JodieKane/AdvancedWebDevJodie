@@ -21,3 +21,5 @@ Week 3 and 4 (Many-To-Many)
 Next make the seeder for Actor and add in the information for actors which will insert into the database. Then go into the MovieSeeder which will then can be alter to connect the use of the pivot table together for the actors to go with whatever movie they are in. Then alter the routes for actors. Now test run the migrations and have them in oredr for it to work and your seeds too.</p>
 
 <p>Now its time to create the view/create/edit/delete for actors. Similar to the movies, I took the movies view (index/card and show/details) and added it in for the actors with their attributes and tweek it a bit.  Then create the routes for the actors in web.php. Then did the same crud as from movies just altered it for the actors to edit or create an actor, Also for delete too. Now I added a link for the movie the actor is in onto their detail pages so it shows the pivot table works for the web app.</p>
+
+<p>Now that the website is fully complete i did my video and my final commits/comments too that needed to be done overall was pretty easy as I knew stuff going into CA2 and it was nice adding more stuff to it too.</p>

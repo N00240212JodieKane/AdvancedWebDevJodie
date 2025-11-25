@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <h3 class="font-semibold text-lg mb-4">Edit New Actor</h3>     
-                               {{-- Using the MovieForm component for movie edited --}}
+                               {{-- Using the ActorForm component for Actor edited --}}
                   <x-actor-form 
                   :action="route('actors.update', $actor)" 
                   method="PUT" 

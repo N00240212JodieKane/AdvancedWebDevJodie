@@ -25,10 +25,10 @@ class ActorController extends Controller
     {
         if (auth()->user()->role !== 'admin') {
             return redirect()->route('movies.index')->with('error', 'Access Denied');
-        }
+        } //Only admin can access this
 
         $movies = Movie::all();
-        return view('actors.create', compact('movies'));
+        return view('actors.create', compact('movies'));  
     }
 
     public function store(Request $request)
@@ -111,7 +111,7 @@ public function edit($id)
 
     public function destroy(Actor $actor)
     {
-        $actor->movies()->detach(); //Pivot Tbale_> Detaches the actor from the movie when they are deleted
+        $actor->movies()->detach(); //Pivot Table => Detaches the actor from the movie when they are deleted
         $actor->delete();
 
         return to_route('actors.index')->with('success', 'Actor Deleted Successfully');
