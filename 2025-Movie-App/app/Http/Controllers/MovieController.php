@@ -108,7 +108,7 @@ public function show($id)
           {
              $movie = Movie::findOrFail($id);
     $actors = Actor::all();
-    $movieActors = $movie->actors->pluck('id')->toArray();
+    $movieActors = $movie->actors->pluck('id')->toArray(); //whatever the movie the actor is in will load onto their details page
         return view('movies.edit', compact('movie', 'actors', 'movieActors'));
     }
     }
