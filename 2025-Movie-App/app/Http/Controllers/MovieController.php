@@ -64,21 +64,23 @@ public function index(Request $request)
     } 
 
      // Create movie ONCE
-        $movie = Movie::create($validated);
+ /*        $movie = Movie::create($validated); */
 
-        // Attach movies
-        if ($request->has('actors')) {
-            $movie->actors()->attach($request->actors);
-        }
-
-    // Create the movie record
-    Movie::create([
+   // Create the movie record
+    $movie = Movie::create([
         'title' => $request->title,
         'release_date' => $request->release_date,
         'movie_url' => $imageName, // Just the filename, not full path
         'description' => $request->description,
         'trailer_link' => $request->trailer_link
     ]);
+
+        // Attach movies
+        if ($request->has('actors')) {
+            $movie->actors()->attach($request->actors);
+        }
+
+  
 
     return to_route('movies.index')->with('success', 'Movie created successfully');
 }
